@@ -5,7 +5,7 @@ import (
 
 	"github.com/ossf/gemara/layer4"
 
-	"github.com/MYORG/plugin-branch_protection/data"
+	"github.com/qduanmu/plugin-branch-protection/data"
 )
 
 // VerifyPayload typecasts the payload so that it can be used elsewhere in a step.

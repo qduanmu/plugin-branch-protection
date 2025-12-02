@@ -7,8 +7,8 @@ import (
 
 	"os"
 
-	"github.com/qduanmu/plugin-branch_protection/data"
-	"github.com/qduanmu/plugin-branch_protection/evaluation_plans"
+	"github.com/qduanmu/plugin-branch-protection/data"
+	"github.com/qduanmu/plugin-branch-protection/evaluation_plans"
 
 	"github.com/privateerproj/privateer-sdk/command"
 	"github.com/privateerproj/privateer-sdk/pluginkit"
@@ -24,7 +24,7 @@ var (
 	// BuiltAt is the actual build datetime
 	BuiltAt = ""
 
-	PluginName   = "branch_protection"
+	PluginName   = "branch-protection"
 	RequiredVars = []string{}
 
 	//go:embed data/catalogs
@@ -40,7 +40,7 @@ func main() {
 	orchestrator := pluginkit.EvaluationOrchestrator{
 		PluginName:    PluginName,
 		PluginVersion: Version,
-		PluginUri:     "github.com/qduanmu/plugin-branch_protection",
+		PluginUri:     "github.com/qduanmu/plugin-branch-protection",
 	}
 	orchestrator.AddLoader(data.Loader)
 

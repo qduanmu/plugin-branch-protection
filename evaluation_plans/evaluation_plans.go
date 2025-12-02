@@ -2,7 +2,7 @@ package evaluation_plans
 
 import (
     "github.com/ossf/gemara/layer4"
-    "github.com/MYORG/plugin-branch_protection/evaluation_plans/reusable_steps"
+    "github.com/qduanmu/plugin-branch-protection/evaluation_plans/reusable_steps"
 )
 
 var (

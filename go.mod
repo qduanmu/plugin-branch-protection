@@ -1,4 +1,4 @@
-module github.com/MYORG/plugin-branch_protection // Replace this globally with your module name
+module github.com/qduanmu/plugin-branch-protection // Replace this globally with your module name
 
 go 1.25.1
 
