@@ -1,0 +1,129 @@
+metadata:
+  id: SC-CODE
+  title: Strengthening Source Code Controls
+  description: |
+    Baseline security best practices for Segregation of Duties
+    and Two-Factor Authentication in source code repositories.
+  version: 0.1.0
+  last-modified: "2025-11-05T00:00:00Z"
+  applicability-categories:
+    - id: self-managed
+      title: Self-Managed
+      description: Controls applicable to self-managed source code repository platform deployments (e.g., GitLab Self-Managed)
+    - id: hosted
+      title: Hosted / SaaS
+      description: Controls applicable to cloud-hosted and Software-as-a-Service (SaaS) source code repository deployments (e.g., GitHub, GitLab SaaS/Cloud)
+control-families:
+  - id: AC
+    title: Access Control
+    description: |
+      Access Control focuses on the mechanisms and
+      policies that control access to the project's version
+      control system and CI/CD pipelines. These controls help
+      ensure that only authorized users can access sensitive
+      data, modify repository settings, or execute build and
+      release processes.
+    controls:
+      - id: SC-CODE-AC-01
+        title: Branch Protection Access Control Requirements
+        objective: |-
+          Repository owners MUST implement branch protection rules on all Protected Branches
+          (those used for official release, deployed to production/user-facing, or representing
+          long-lived/stable codebase state) to enforce access control policies that restrict
+          privileged operations and require proper authorization for code changes.
+        assessment-requirements:
+          - id: SC-CODE-AC-01.01
+            text: |-
+              Repository owners MUST require pull requests or merge requests before merging
+              changes to protected branches.
+            applicability:
+              - hosted
+              - self-managed
+            recommendation: |-
+              Configure branch protection settings to require pull requests or merge requests
+              before merging. This SHOULD be enforced through the platform's branch protection
+              settings to prevent direct commits to protected branches.
+          - id: SC-CODE-AC-01.02
+            text: |-
+              Repository owners MUST enforce a minimum number of approvals (≥1) from reviewers
+              who are different from the author before allowing changes to be merged into
+              protected branches.
+            applicability:
+              - hosted
+              - self-managed
+            recommendation: |-
+              Configure branch protection settings to require a minimum number of approvals
+              (≥1) before merging. This SHOULD be enforced through the platform's branch
+              protection approval requirements to ensure code changes are reviewed by authorized
+              personnel.
+          - id: SC-CODE-AC-01.03
+            text: Repository owners MUST block force pushes to protected branches.
+            applicability:
+              - hosted
+              - self-managed
+            recommendation: |-
+              Configure branch protection settings to block force pushes to protected branches.
+              This SHOULD be enforced through the platform's branch protection settings to
+              prevent overwriting of branch history and maintain code integrity.
+          - id: SC-CODE-AC-01.04
+            text: Repository owners MUST prevent bypassing of branch protection settings.
+            applicability:
+              - hosted
+              - self-managed
+            recommendation: |-
+              Configure branch protection settings to prevent users with administrative privileges
+              from bypassing branch protection rules. This SHOULD be enforced through the
+              platform's branch protection bypass prevention settings to ensure consistent
+              enforcement of access control policies.
+          - id: SC-CODE-AC-01.05
+            text: Repository owners MUST require CODEOWNER reviews for changes to protected branches.
+            applicability:
+              - hosted
+              - self-managed
+            recommendation: |-
+              Configure branch protection settings to require reviews from code owners for
+              files or directories that have code owner rules defined. This SHOULD be enforced
+              through the platform's code owner review requirements to ensure changes are
+              reviewed by individuals with expertise in the affected code areas.
+          - id: SC-CODE-AC-01.06
+            text: |-
+              Repository owners MUST restrict merge permissions to authorized roles (e.g., maintainers)
+              for protected branches.
+            applicability:
+              - hosted
+              - self-managed
+            recommendation: |-
+              Configure branch protection settings to limit merge permissions to authorized
+              roles such as maintainers or repository administrators. This SHOULD be enforced
+              through the platform's branch protection merge permission settings to restrict
+              who can approve and merge changes to protected branches.
+      - id: SC-CODE-AC-02
+        title: Mandatory Two-Factor Authentication (2FA) Access Control
+        objective: |-
+          Repository owners MUST enforce strong authentication (2FA) as an access control
+          mechanism for all users with access to organizational source code repositories to
+          ensure only authenticated and authorized users can access repositories.
+        assessment-requirements:
+          - id: SC-CODE-AC-02.01
+            text: |-
+              Repository owners MUST enforce 2FA at the organization or group level for all
+              users to restrict repository access to authenticated users only.
+            applicability:
+              - hosted
+              - self-managed
+            recommendation: |-
+              Configure organization or group-level settings to require two-factor authentication
+              for all users. This SHOULD be enforced through the platform's authentication
+              security settings at the highest applicable organizational scope (organization,
+              group, or tenant level) to ensure comprehensive coverage across all repositories.
+          - id: SC-CODE-AC-02.02
+            text: |-
+              Repository owners MUST enforce 2FA at the instance level for all users to restrict
+              repository access to authenticated users only.
+            applicability:
+              - self-managed
+            recommendation: |-
+              Configure instance-level settings to require two-factor authentication for all
+              users. This SHOULD be enforced through the platform's sign-in restrictions or
+              authentication security settings at the instance administrative scope to ensure
+              comprehensive coverage across all repositories and user accounts.
